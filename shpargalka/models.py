@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 import mptt
+from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
 
 
@@ -113,3 +114,16 @@ class ArticleTree(models.Model):
 
     def get_absolute_url(self):
         return reverse('article_detail', args=[self.slug_article])
+
+
+class ArticlesTreeStatistic(models.Model):
+    class Meta:
+        db_table = 'ArticleTreeStatictic'
+
+    article = models.ForeignKey(ArticleTree)
+    date = models.DateField('Дата', default=timezone.now)
+    views = models.IntegerField('Просмотры', default=0)
+
+    def __str__(self):
+        return self.article.title
+

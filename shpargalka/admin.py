@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Article, CategoryArticle, CategoryTreeArticle, ArticleTree
+from .models import Article, CategoryArticle, CategoryTreeArticle, ArticleTree, ArticlesTreeStatistic
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 
@@ -106,3 +106,7 @@ class ArticleAdmin(admin.ModelAdmin):
     readonly_fields = ['created', 'updated']
 
 
+@admin.register(ArticlesTreeStatistic)
+class ArticleTreeStatisticAdmin(admin.ModelAdmin):
+    list_display = ['--str__', 'date', 'views']
+    search_fields = ['--str__']
