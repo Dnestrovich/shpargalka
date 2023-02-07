@@ -1,0 +1,84 @@
+{% extends 'shpargalka/shpargalka_base.html' %}
+
+{% load static %}
+{% load mptt_tags %}
+{% load thumbnail %}
+
+{% block title %}
+    Post list
+{% endblock title %}
+
+{% block container %}
+
+<!--================ Breadcrumbs Start =================-->
+{% include 'includes/breadcrumbs.html' %}
+<!--================Breadcrumbs End  =================-->
+
+    <section class="blog_area section_gap">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-4">
+                  <div class="blog_right_sidebar">
+                      <!-- Sidebar Left start-->
+                      {% include 'includes/sidebar_left.html' %}
+                      <!-- Sidebar Left end-->
+                  </div>
+              </div>
+
+
+
+              <div class="col-lg-8 mb-5 mb-lg-0">
+                  <div class="blog_left_sidebar">
+                      <article class="blog_item">
+
+                          {% for post in all_articles_tree %}
+                          <div class="blog_details">
+                              <a class="d-inline-block" href="{{ post.get_absolute_url }}">
+                                  <h2>{{ post.title}}</h2>
+                              </a>
+                              {% if post.image_article %}
+                                  <img style="width:600px;"  src="{{ post.image_article.url }}">
+                              {% endif %}
+
+                              <p>{{ post.anons | safe }}</p>
+
+                              <ul class="blog-info-link">
+                                <li><a href="{{ post.get_absolute_url }}"><i class="ti-folder"></i> {{ post.category_article }}</a></li>
+                                <li><a href=""><i class="ti-calendar"></i> {{ post.created }}</a></li>
+                                <li><a style="color:#000;" class="genric-btn info-border circle arrow" href="{{ post.get_absolute_url }}">Подробнее...</a></li>
+                              </ul>
+                          </div>
+                          {% endfor %}
+                      </article>
+
+                      <nav class="blog-pagination justify-content-center d-flex">
+                          <ul class="pagination">
+                              <li class="page-item">
+                                  <a href="#" class="page-link" aria-label="Previous">
+                                      <span aria-hidden="true">
+                                          <span class="ti-arrow-left"></span>
+                                      </span>
+                                  </a>
+                              </li>
+                              <li class="page-item">
+                                  <a href="#" class="page-link">1</a>
+                              </li>
+                              <li class="page-item active">
+                                  <a href="#" class="page-link">2</a>
+                              </li>
+                              <li class="page-item">
+                                  <a href="#" class="page-link" aria-label="Next">
+                                      <span aria-hidden="true">
+                                          <span class="ti-arrow-right"></span>
+                                      </span>
+                                  </a>
+                              </li>
+                          </ul>
+                      </nav>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+{% endblock container %}

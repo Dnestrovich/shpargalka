@@ -1,0 +1,38 @@
+{% load mptt_tags %}
+<!-- Sidebar Left start-->
+<aside class="single_sidebar_widget post_category_widget">
+    <form action="{% url 'search' %}" method="get">
+        <div class="form-group">
+            <div class="input-group pb-2 search_left">
+                <input class="form-control" name="q" type="search" placeholder="Что ищем?">
+                <div class="input-group-append">
+                    <button class="btn btn_search" type="submit"><i class="ti-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="widget">
+        <h3 class="widget-title"><a class="d-flex" href="/" >Все статьи</a></h3>
+        <ul class="widget-list">
+
+            {% recursetree categories_tree %}
+            <li>
+                {% if node.is_leaf_node %}
+                <a class="{% if request.path == '/category/{{ node.id }}/{{ node.slug_cat}}' %}active{% endif %}"
+                   href="/category/{{ node.id }}/{{ node.slug_cat}}">{{ node.name_cat }}</a>
+                {% else %}
+                <span class="caret parent sidebar_menu_item_title_caret">{{ node.name_cat }}</span>
+                <ul class="nested sidebar_menu_pl">
+                    <div class="li_style">
+                    <li><a href="/category/{{ node.id }}/{{ node.slug_cat}}">{{ children }}</a></li>
+                    </div>
+                </ul>
+                {% endif %}
+            </li>
+            {% endrecursetree %}
+        </ul>
+    </div>
+
+</aside>
+<!-- Sidebar Left end-->

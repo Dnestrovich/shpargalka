@@ -1,0 +1,35 @@
+<div class="category-wrap">
+    <ul>
+        <li>
+            <a href="/" class="d-flex">Все статьи</a>
+        </li>
+        {% recursetree categories_tree %}
+        <li>
+            <a href="/category/{{ node.id }}/{{ node.slug_cat}}">{{ node.name_cat }} </a>
+            {% if not node.is_leaf_node %}
+                <div class="children">
+                    <ul>
+                        <li>
+                            <a href="{{node.slug }}" >{{ children }}</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+        </li>
+        {% endrecursetree %}
+    </ul>
+</div>
+
+<article class="blog_item">
+    {% for post in articles %}
+    <div class="blog_details">
+        <a class="d-inline-block" href="{{ post.get_absolute_url }}">
+        <h4>{{ post.title}}</h4>
+        </a>
+        <ul class="blog-info-link">
+            <li><a href="{{ post.get_absolute_url }}"><i class="ti-folder"></i> {{ post.category_article }}</a></li>
+            <li><a href=""><i class="ti-calendar"></i> {{ post.created }}</a></li>
+        </ul>
+    </div>
+    {% endfor %}
+</article>
