@@ -108,5 +108,5 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(ArticlesTreeStatistic)
 class ArticleTreeStatisticAdmin(admin.ModelAdmin):
-    list_display = ['--str__', 'date', 'views']
-    search_fields = ['--str__']
+    list_display = ['__str__', 'date', 'views']
+    search_fields = ['__str__']

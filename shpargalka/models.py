@@ -105,8 +105,8 @@ class ArticleTree(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = '-Статья tree'
-        verbose_name_plural = '-- Статьи tree'
+        verbose_name = '-Статья (Tree)'
+        verbose_name_plural = '-- Статьи (Tree)'
         ordering = ('category_article', 'number_post',)
 
     def __str__(self):
@@ -118,9 +118,11 @@ class ArticleTree(models.Model):
 
 class ArticlesTreeStatistic(models.Model):
     class Meta:
+        verbose_name = '-- Статистика (Tree)'
+        verbose_name_plural = '-- Статистика (Tree)'
         db_table = 'ArticleTreeStatictic'
 
-    article = models.ForeignKey(ArticleTree)
+    article = models.ForeignKey(ArticleTree, on_delete=models.CASCADE)
     date = models.DateField('Дата', default=timezone.now)
     views = models.IntegerField('Просмотры', default=0)
 
