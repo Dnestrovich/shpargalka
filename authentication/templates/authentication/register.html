@@ -1,0 +1,78 @@
+{% extends 'shpargalka/shpargalka_base.html' %}
+
+{% load static %}
+{% load mptt_tags %}
+{% load thumbnail %}
+
+{% block title %}
+Авторизация
+{% endblock title %}
+
+{% block container %}
+
+<!--================ Breadcrumbs Start =================-->
+{% include 'includes/breadcrumbs.html' %}
+<!--================Breadcrumbs End  =================-->
+
+<section class="blog_area section_gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <!-- Sidebar Left start-->
+                    {% include 'includes/sidebar_left.html' %}
+                    <!-- Sidebar Left end-->
+                </div>
+            </div>
+
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="blog_left_sidebar">
+                    <div class="col-lg-6">
+                        <div class="review_box">
+
+                            <!-- Register -->
+                            <form class="row contact_form" action="{% url 'register' %}" method="post">
+                                {% csrf_token %}
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <h4>Registration</h4>
+                                    </div>
+                                </div>
+
+                                <span style="color:red;">{{ user_form.errors }}</span>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <i class="fa fa-user"></i>
+                                        {{ user_form.username }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <i class="fa fa-envelope"></i>
+                                        {{ user_form.email }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <i class="fa fa-lock"></i>
+                                        {{ user_form.password }}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 text-right">
+                                    <button type="submit" class="btn submit_btn">Register</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock container %}

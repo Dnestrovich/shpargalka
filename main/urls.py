@@ -22,6 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('shpargalka.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('auth/', include('authentication.urls')),
 ]
 
 if settings.DEBUG:

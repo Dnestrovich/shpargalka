@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # --- My plugin ---
+    'django_bootstrap_icons',
     'jazzmin',
 
     # --- Default Django Apps ---
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "shpargalka",
     "mptt",
+    "authentication",
 
 ]
 

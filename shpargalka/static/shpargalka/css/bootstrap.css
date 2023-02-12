@@ -228,7 +228,8 @@ img {
 
 svg {
     overflow: hidden;
-    vertical-align: middle
+    vertical-align: sub;
+    padding-right: 5px;
 }
 
 table {

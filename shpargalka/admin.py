@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django import forms
-from .models import Article, CategoryArticle, CategoryTreeArticle, ArticleTree, ArticlesTreeStatistic
+from .models import Article, CategoryArticle, CategoryTreeArticle, ArticleTree
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
-from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
+from mptt.admin import DraggableMPTTAdmin
 
 
 class ArticleAdminForm(forms.ModelForm):
@@ -12,6 +12,7 @@ class ArticleAdminForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = '__all__'
+
 
 # Дерево категорий с сортировкой перетаскиванием (Draggable)
 @admin.register(CategoryTreeArticle)
@@ -34,11 +35,9 @@ class CategoryArticleTreeAdmin(DraggableMPTTAdmin):
                 cumulative=True)
 
         # Add non cumulative product count
-        qs = CategoryTreeArticle.objects.add_related_count(qs,
-                 ArticleTree,
-                 'category_article',
-                 'products_count',
-                 cumulative=False)
+        qs = CategoryTreeArticle.objects.add_related_count(
+            qs, ArticleTree, 'category_article', 'products_count', cumulative=False
+        )
         return qs
 
     def related_products_count(self, instance):
@@ -73,9 +72,6 @@ class ArticleTreeAdmin(admin.ModelAdmin):
     readonly_fields = ['created', 'updated']
 
 
-
-
-
 @admin.register(CategoryArticle)
 class CategoryArticleAdmin(admin.ModelAdmin):
     list_display = ['name_cat', 'slug_cat', 'description_cat']
@@ -104,9 +100,3 @@ class ArticleAdmin(admin.ModelAdmin):
     ]
     form = ArticleAdminForm
     readonly_fields = ['created', 'updated']
-
-
-@admin.register(ArticlesTreeStatistic)
-class ArticleTreeStatisticAdmin(admin.ModelAdmin):
-    list_display = ['__str__', 'date', 'views']
-    search_fields = ['__str__']
