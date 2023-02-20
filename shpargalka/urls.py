@@ -1,5 +1,4 @@
 from django.urls import path
-from . import views
 from shpargalka.views import articles_view, post_detail_tree, category_product_tree, search
 
 urlpatterns = [

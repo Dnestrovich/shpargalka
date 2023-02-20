@@ -3,6 +3,7 @@
 {% load static %}
 {% load mptt_tags %}
 {% load thumbnail %}
+{% load bootstrap_icons %}
 
 {% block title %}
 Авторизация
@@ -25,17 +26,17 @@
                 </div>
             </div>
 
-
             <div class="col-lg-8 mb-5 mb-lg-0">
                 <div class="blog_left_sidebar">
                     <div class="col-lg-6">
                         <div class="review_box">
                             <form class="row contact_form" action="{% url 'login' %}" method="post">
                                 {% csrf_token %}
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <h4>Login</h4>
-                                    </div>
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-heading">Автризация</h4>
+                                    <p>Авторизуйтесь, если вы уже зарегистрированы.</p>
+                                    <hr>
+                                    <p class="mb-0">Все поля в фоме обязательны для заполнения!</p>
                                 </div>
 
                                 {% for error in login_form.non_field_errors %}
@@ -48,19 +49,23 @@
                                 </div>
                                 {% endfor %}
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <i class="fa fa-user"></i>
-                                        <input class="form-control" type="text" name="username" id="id_username" placeholder="Login" required="">
+                                <div class="input-group w-100 mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">{% bs_icon 'person-fill' size='1.5em'%}</div>
                                     </div>
+                                    <input type="text" class="form-control" placeholder="login" name="username"
+                                           id="id_username" aria-label="Input group example"
+                                           aria-describedby="btnGroupAddon">
                                 </div>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <i class="fa fa-lock"></i>
-                                        <input class="form-control" type="password" name="password" id="id_password" placeholder="Password"
-                                               required="">
+
+                                <div class="input-group w-100 mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">{% bs_icon 'lock-fill' size='1.5em' %}</div>
                                     </div>
+                                    <input type="password" class="form-control" placeholder="Password" name="password"
+                                           id="id_password" aria-label="Input group example"
+                                           aria-describedby="btnGroupAddon">
                                 </div>
 
                                 <div class="col-md-12">

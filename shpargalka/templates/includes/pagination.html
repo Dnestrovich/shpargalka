@@ -1,0 +1,79 @@
+{% if page_object %}
+<!-- Pagination Grid position one start -->
+<nav class="blog-pagination justify-content-center d-flex">
+    <ul class="pagination">
+        {% if prev_url %}
+        <li class="page-item">
+            <a href="{{ prev_url }}" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">
+                    <span class="ti-arrow-left"></span>
+                </span>
+            </a>
+        </li>
+        {% endif %}
+
+        {% for n in page_object.paginator.page_range %}
+        {% if page_object.number == n %}
+        <li class="page-item active"><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+        {% else %}
+        <li class=""><a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if next_url %}
+        <li class="page-item">
+            <a href="{{ next_url }}" class="page-link" aria-label="Next">
+                <span aria-hidden="true">
+                    <span class="ti-arrow-right"></span>
+                </span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+<!-- Pagination Grid position one end -->
+{% endif %}
+
+
+
+<!--<nav class="blog-pagination justify-content-center d-flex">-->
+<!--    <ul class="pagination">-->
+<!--        <li class="page-item">-->
+<!--            <a href="#" class="page-link" aria-label="Previous">-->
+<!--                <span aria-hidden="true">-->
+<!--                  <span class="ti-arrow-left"></span>-->
+<!--                </span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li class="page-item">-->
+<!--            <a href="#" class="page-link">1</a>-->
+<!--        </li>-->
+<!--        <li class="page-item active">-->
+<!--            <a href="#" class="page-link">2</a>-->
+<!--        </li>-->
+<!--        <li class="page-item">-->
+<!--            <a href="#" class="page-link" aria-label="Next">-->
+<!--                <span aria-hidden="true">-->
+<!--                  <span class="ti-arrow-right"></span>-->
+<!--                </span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+<!--<nav aria-label="Page navigation example">-->
+<!--    <ul class="pagination">-->
+<!--        <li class="page-item">-->
+<!--            <a class="page-link" href="#" aria-label="Previous">-->
+<!--                <span aria-hidden="true">&laquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--        <li class="page-item">-->
+<!--            <a class="page-link" href="#" aria-label="Next">-->
+<!--                <span aria-hidden="true">&raquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->

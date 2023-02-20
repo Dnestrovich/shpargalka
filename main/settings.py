@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "shpargalka",
     "mptt",
     "authentication",
+    "sliders",
 
 ]
 

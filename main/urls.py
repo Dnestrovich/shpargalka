@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('shpargalka.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('auth/', include('authentication.urls')),
+    path('experiments/', include('sliders.urls')),
 ]
 
 if settings.DEBUG:

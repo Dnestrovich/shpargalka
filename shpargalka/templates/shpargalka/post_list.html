@@ -26,9 +26,12 @@ Post list
 
             <div class="col-lg-8 mb-5 mb-lg-0">
                 <div class="blog_left_sidebar">
+                    <!-- Sidebar Left start-->
+                    {% include 'includes/message.html' %}
+                    <!-- Sidebar Left end-->
                     <article class="blog_item">
 
-                        {% for post in all_articles_tree %}
+                        {% for post in page_object %}
                         <div class="blog_details">
                             <a class="d-inline-block" href="{{ post.get_absolute_url }}">
                                 <h4>{{ post.title}}</h4>
@@ -44,30 +47,9 @@ Post list
 
                     </article>
 
-                    <nav class="blog-pagination justify-content-center d-flex">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Previous">
-                                      <span aria-hidden="true">
-                                          <span class="ti-arrow-left"></span>
-                                      </span>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link">1</a>
-                            </li>
-                            <li class="page-item active">
-                                <a href="#" class="page-link">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Next">
-                                      <span aria-hidden="true">
-                                          <span class="ti-arrow-right"></span>
-                                      </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <!-- Блок Pagination -->
+                    {% include 'includes/pagination.html' %}
+                    <!-- Блок Pagination -->
                 </div>
             </div>
         </div>
@@ -75,3 +57,5 @@ Post list
 </section>
 
 {% endblock container %}
+
+

@@ -3,6 +3,7 @@
 {% load static %}
 {% load mptt_tags %}
 {% load thumbnail %}
+{% load bootstrap_icons %}
 
 {% block title %}
 Авторизация
@@ -26,50 +27,69 @@
             </div>
 
             <div class="col-lg-8 mb-5 mb-lg-0">
-                <div class="blog_left_sidebar">
-                    <div class="col-lg-6">
-                        <div class="review_box">
+                <div class="col-lg-6">
 
-                            <!-- Register -->
-                            <form class="row contact_form" action="{% url 'register' %}" method="post">
-                                {% csrf_token %}
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <h4>Registration</h4>
-                                    </div>
-                                </div>
+                    <div class="review_box">
+                        <!-- Register -->
+                        <form class="row contact_form" action="{% url 'register' %}" method="post">
+                            {% csrf_token %}
 
-                                <span style="color:red;">{{ user_form.errors }}</span>
+                            {% if user.register %}
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="alert-heading">Регистрация</h4>
+                                <p>Здравствуйте, {{ user.username }}! Вы успешно зарегистрированы!</p>
+                                <hr>
+                                <p class="mb-0">Все поля в фоме обязательны для заполнения!</p>
+                            </div>
+                            {% else %}
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="alert-heading">Регистрация</h4>
+                                <p>Здравствуйте, Гость! Для удобства полномерного использования сайта, рекомендуем пройти регистрацию.</p>
+                                <hr>
+                                <p class="mb-0">Все поля в фоме обязательны для заполнения!</p>
+                            </div>
+                             {% endif %}
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <i class="fa fa-user"></i>
+                            <span style="color:red;">{{ user_form.errors }}</span>
+
+                            <ul class="w-100">
+                                <li>
+                                    <div class="input-group w-100 mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                {% bs_icon 'person-fill' size='1.5em'%}
+                                            </div>
+                                        </div>
                                         {{ user_form.username }}
                                     </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <i class="fa fa-envelope"></i>
+                                </li>
+                                <li>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                {% bs_icon 'envelope-fill' size='1.5em' %}
+                                            </div>
+                                        </div>
                                         {{ user_form.email }}
                                     </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <i class="fa fa-lock"></i>
+                                </li>
+                                <li>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">{% bs_icon 'lock-fill' size='1.5em' %}
+                                            </div>
+                                        </div>
                                         {{ user_form.password }}
                                     </div>
-                                </div>
-
-                                <div class="col-md-12 text-right">
-                                    <button type="submit" class="btn submit_btn">Register</button>
-                                </div>
-                            </form>
-
-                        </div>
+                                </li>
+                            </ul>
+                            <div class="col-md-12 text-right">
+                                <button type="submit" class="btn submit_btn">Register</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
